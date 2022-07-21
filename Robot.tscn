@@ -10,7 +10,7 @@ albedo_color = Color( 0.682353, 0.682353, 0.682353, 1 )
 
 [sub_resource type="CubeMesh" id=5]
 material = SubResource( 6 )
-size = Vector3( 0.3, 0.3, 0.3 )
+size = Vector3( 0.3, 0.1, 0.3 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 1, 0.513726, 0.0823529, 1 )
@@ -32,6 +32,7 @@ local_coords = false
 mesh = SubResource( 5 )
 direction = Vector3( 0, 0, -1 )
 spread = 13.62
+flatness = 0.55
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 5.0
 initial_velocity_random = 0.58
@@ -44,6 +45,7 @@ local_coords = false
 mesh = SubResource( 5 )
 direction = Vector3( 0, 0, -1 )
 spread = 13.62
+flatness = 0.5
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 5.0
 initial_velocity_random = 0.58

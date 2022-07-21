@@ -20,9 +20,10 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.9103, 0 )
 [node name="SpaceEnviornment" type="WorldEnvironment" parent="."]
 environment = ExtResource( 4 )
 
-[node name="PlanetGenerator" parent="." instance=ExtResource( 2 )]
+[node name="PlanetGenerator" parent="." groups=["planet"] instance=ExtResource( 2 )]
 subdivisions = 5
 noise = SubResource( 6 )
+noise_strength = 0.3
 
 [node name="ChaseCamera" type="Camera" parent="."]
 environment = ExtResource( 4 )

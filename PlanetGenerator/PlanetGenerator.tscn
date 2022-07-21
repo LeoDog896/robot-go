@@ -23,6 +23,7 @@ points = PoolVector3Array( 0, 40, 0, 6.49178, 38.0345, 10.509, 10.924, 38.473, 0
 
 [node name="PlanetGenerator" type="StaticBody"]
 script = ExtResource( 1 )
+noise_strength = 0.5
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
 mesh = SubResource( 4 )

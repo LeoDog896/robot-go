@@ -13,21 +13,24 @@ export (OpenSimplexNoise) var noise = null
 export (bool) var update_noise = false setget update_noise
 export (float, 0, 10) var gravity_scale = 1.5 setget set_gravity_scale
 export (float, 0, 100) var gravity = 9.8 setget set_gravity
+export (float, 0, 2) var noise_strength = 1 setget set_noise_strength
 
 func _ready():
 	randomize()
 	
-	$Gravity/GravityArea.shape.radius = gravity_scale * radius
-	$Gravity.gravity = gravity
+	if $Gravity/GravityArea:
+		$Gravity/GravityArea.shape.radius = gravity_scale * radius
+		$Gravity.gravity = gravity
 	
-	triangles.clear()
-	verticies.clear()
-	$MeshInstance.mesh = null
-	
-	generate_icosphere()
-	subdivide_icosphere()
-	generate_mesh()
-	generate_collision()
+	if $MeshInstance:
+		triangles.clear()
+		verticies.clear()
+		$MeshInstance.mesh = null
+		
+		generate_icosphere()
+		subdivide_icosphere()
+		generate_mesh()
+		generate_collision()
 	
 func generate_collision():
 	$MeshInstance.create_convex_collision()
@@ -91,7 +94,7 @@ func generate_mesh():
 		for i in triangle.verticies.size():
 			var vertex = verticies[triangle.verticies[(triangle.verticies.size() - 1) - i]]
 			if noise != null:
-				vertex = vertex.normalized() * ((noise.get_noise_3dv(vertex * noise.period * noise.octaves) + 1) * 0.5)
+				vertex = vertex.normalized() * ((noise.get_noise_3dv(vertex * noise.period * noise.octaves) * noise_strength + 1) * 0.5)
 				
 			surface_tool.add_vertex(vertex * radius)
 		
@@ -168,6 +171,10 @@ func set_gravity_scale(value):
 
 func set_gravity(value):
 	gravity = value
+	_ready()
+	
+func set_noise_strength(value):
+	noise_strength = value
 	_ready()
 
 func update_noise(value):
