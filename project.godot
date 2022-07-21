@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "StaticBody",
+"class": "PlanetGenerator",
+"language": "GDScript",
+"path": "res://PlanetGenerator/PlanetGenerator.gd"
+} ]
+_global_script_class_icons={
+"PlanetGenerator": "res://PlanetGenerator/planet.svg"
+}
+
 [application]
 
 config/name="robot-go"
@@ -48,6 +58,7 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+quality/driver/fallback_to_gles2=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"
